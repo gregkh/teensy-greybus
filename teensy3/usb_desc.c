@@ -328,21 +328,21 @@ static uint8_t config_descriptor[CONFIG_DESC_SIZE] = {
 	0x05,					// bDescriptorType; Endpoint
 	0x81,					// bEndpointAddress; IN Endpoint 1
 	0x03,					// bmAttributes; Interrupt
-	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x40, 0x00,				// wMaxPacketSize; 64 (real device is 1024)
 	0x40,					// bInterval
 
 	0x07,					// bLength
 	0x05,					// bDescriptorType; Endpoint
 	0x82,					// bEndpointAddress; IN Endpoint 2
 	0x02,					// bmAttributes; Bulk
-	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x40, 0x00,				// wMaxPacketSize; 64
 	0x00,					// bInterval
 
 	0x07,					// bLength
 	0x05,					// bDescriptorType; Endpoint
 	0x02,					// bEndpointAddress; OUT Endpoint 2
 	0x02,					// bmAttributes; Bulk
-	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x40, 0x00,				// wMaxPacketSize; 64
 	0x00,					// bInterval
 
 #ifdef CDC_IAD_DESCRIPTOR
