@@ -311,6 +311,40 @@ static uint8_t config_descriptor[CONFIG_DESC_SIZE] = {
         0xC0,                                   // bmAttributes
         50,                                     // bMaxPower
 
+	// Greybus descriptor
+	// Interface
+	0x09,					// bLength
+	0x04,					// bDescriptorType; Interface
+	0x00,					// bInterfaceNumber
+	0x00,					// bAlternateSetting
+	0x03,					// bNumEndpoints
+	0xff,					// bInterfaceClass; vendor-specific
+	0xff,					// bInterfaceSubClass;
+	0xff,					// bInterfaceProtocol
+	0x00,					// iInterface
+
+	// endpoint
+	0x07,					// bLength
+	0x05,					// bDescriptorType; Endpoint
+	0x81,					// bEndpointAddress; IN Endpoint 1
+	0x03,					// bmAttributes; Interrupt
+	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x40,					// bInterval
+
+	0x07,					// bLength
+	0x05,					// bDescriptorType; Endpoint
+	0x82,					// bEndpointAddress; IN Endpoint 2
+	0x02,					// bmAttributes; Bulk
+	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x00,					// bInterval
+
+	0x07,					// bLength
+	0x05,					// bDescriptorType; Endpoint
+	0x02,					// bEndpointAddress; OUT Endpoint 2
+	0x02,					// bmAttributes; Bulk
+	0x00, 0x04,				// wMaxPacketSize; 1024
+	0x00,					// bInterval
+
 #ifdef CDC_IAD_DESCRIPTOR
         // interface association descriptor, USB ECN, Table 9-Z
         8,                                      // bLength
@@ -800,7 +834,14 @@ const uint8_t usb_endpoint_config_table[NUM_ENDPOINTS] =
 };
 #endif
 
+const uint8_t usb_endpoint_config_table[NUM_ENDPOINTS] = {
+	ENDPOINT_TRANSIMIT_ONLY,	//  1
+	ENDPOINT_TRANSIMIT_ONLY,	//  2
+	ENDPOINT_RECEIVE_ONLY,		//  3
+	ENDPOINT_UNUSED,		//  4
+};
 
+#if 0
 const uint8_t usb_endpoint_config_table[NUM_ENDPOINTS] = 
 {
 #if (defined(ENDPOINT1_CONFIG) && NUM_ENDPOINTS >= 1)
@@ -879,7 +920,7 @@ const uint8_t usb_endpoint_config_table[NUM_ENDPOINTS] =
 	ENDPOINT_UNUSED,
 #endif
 };
-
+#endif
 
 
 

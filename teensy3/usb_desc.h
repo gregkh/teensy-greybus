@@ -80,8 +80,24 @@ let me know?  http://forum.pjrc.com/forums/4-Suggestions-amp-Bug-Reports
 */
 
 
+#if defined(USB_GREYBUS)
+  #define VENDOR_ID		0xffff
+  #define PRODUCT_ID		0x0001
+  #define MANUFACTURER_NAME	{'G','r','e','y','b','u','s'}
+  #define MANUFACTURER_NAME_LEN	7
+  #define PRODUCT_NAME		{'S','V','C',' ','B','r','i','d','g','e'}
+  #define PRODUCT_NAME_LEN	10
+  #define EP0_SIZE		64
+  #define NUM_ENDPOINTS		4
+  #define NUM_USB_BUFFERS	12
+  #define NUM_INTERFACE		1
+  #define CONFIG_DESC_SIZE	(9+9+7+7+7)
+  #define ENDPOINT2_CONFIG	ENDPOINT_TRANSIMIT_ONLY
+  #define ENDPOINT3_CONFIG	ENDPOINT_RECEIVE_ONLY
+  #define ENDPOINT4_CONFIG	ENDPOINT_TRANSIMIT_ONLY
 
-#if defined(USB_SERIAL)
+
+#elif defined(USB_SERIAL)
   #define VENDOR_ID		0x16C0
   #define PRODUCT_ID		0x0483
   #define DEVICE_CLASS		2	// 2 = Communication Class
